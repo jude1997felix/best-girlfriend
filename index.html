@@ -25,6 +25,8 @@ padding:80px 20px;
 max-width:700px;
 }
 
+
+
 h1{
 font-size:clamp(2rem,6vw,3rem);
 animation:fadeIn 2s ease;
@@ -47,31 +49,40 @@ transform:scale(1.1);
 }
 
 #message{
-margin-top:20px;
-font-size:1.4rem;
-line-height:1.8;
-max-width:500px;
-font-style:italic;
 display:none;
+margin-top:40px;
+font-size:1.4rem;
+line-height:1.9;
+max-width:650px;
+margin-left:auto;
+margin-right:auto;
+font-style:italic;
+text-shadow:0 2px 6px rgba(0,0,0,0.15);
 }
 
-.heart{
-position:absolute;
-font-size:20px;
-animation:float 6s linear infinite;
+.blossom{
+position:fixed;
+top:-10px;
+font-size:22px;
+pointer-events:none;
+animation:fall linear forwards;
 }
 
-@keyframes float{
-0%{transform:translateY(100vh);opacity:0}
-50%{opacity:1}
-100%{transform:translateY(-10vh);opacity:0}
+@keyframes fall{
+0%{
+transform:translateY(-10vh) rotate(0deg);
+opacity:0;
 }
 
-@keyframes fadeIn{
-from{opacity:0;transform:translateY(-20px)}
-to{opacity:1;transform:translateY(0)}
+10%{
+opacity:1;
 }
 
+100%{
+transform:translateY(110vh) rotate(360deg);
+opacity:0;
+}
+}
 </style>
 </head>
 
@@ -107,21 +118,25 @@ function showMessage(){
 document.getElementById("message").style.display="block";
 }
 
-function createHeart(){
-const heart=document.createElement("div");
-heart.classList.add("heart");
-heart.innerHTML="❤️";
-heart.style.left=Math.random()*100+"vw";
-heart.style.fontSize=(Math.random()*20+10)+"px";
-heart.style.animationDuration=(Math.random()*3+3)+"s";
-document.body.appendChild(heart);
+function createBlossom(){
+
+const blossom = document.createElement("div");
+blossom.classList.add("blossom");
+blossom.innerHTML = "🌸";
+
+blossom.style.left = Math.random() * 100 + "vw";
+blossom.style.fontSize = (Math.random()*15 + 15) + "px";
+blossom.style.animationDuration = (Math.random()*5 + 5) + "s";
+
+document.body.appendChild(blossom);
 
 setTimeout(()=>{
-heart.remove();
-},6000);
+blossom.remove();
+},9000);
+
 }
 
-setInterval(createHeart,400);
+setInterval(createBlossom,500);
 
 </script>
 
